@@ -1,13 +1,14 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
+const formidable = require("express-formidable");
 const router = require("./Routes/index");
-
 const app = express();
 const port = process.env.PORT || 3000;
+const IPFSModel = require("./models/ipfs");
 
 app.listen(port, () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(formidable());
   app.use(router);
 });
